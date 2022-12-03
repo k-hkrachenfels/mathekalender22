@@ -22,5 +22,5 @@ for a in range(5,max_points,5):
                     print(f"a={a}, b={b}, c={c}, d={d}")
                     solutions+=1
 
-print(f"Es git {solutions} Möglichkeiten")
+print(f"Es gibt {solutions} Möglichkeiten")
 
