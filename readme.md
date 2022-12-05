@@ -77,6 +77,9 @@ Es gibt folgende Unterfälle:
       P (P u)
       P (D g)
       P (D g)
+#todo
+(g P) P (P g)
+(u D) P (D u)
 ```
 die sich wie folgt weiterentwickeln lassen:
 ```
