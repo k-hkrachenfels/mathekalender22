@@ -63,13 +63,20 @@ g P g
 ```
 schreiben, wobei die Ketten g eine Länge zwischen 0 und n-1 haben können.
 
-a.
-Für den Fall dass links und rechts Nachbarn existieren gibt es folgende Unterfälle
+Es gibt folgende Unterfälle:
 ```
 (u P) P (P u)
 (g D) P (P u)
 (u P) P (D g)
 (g D) P (D g)
+(u P) P 
+(g D) P 
+(u P) P 
+(g D) P 
+      P (P u)
+      P (P u)
+      P (D g)
+      P (D g)
 ```
 die sich wie folgt weiterentwickeln lassen:
 ```
@@ -77,9 +84,17 @@ die sich wie folgt weiterentwickeln lassen:
 (g D) P (P u) -> (g P) - (D u)
 (u P) P (D g) -> (u D) - (P g)
 (g D) P (D g) -> (g P) - (P g)
+(u P) P       -> (u D) - 
+(g D) P       -> (g P) - 
+(u P) P       -> (u D) - 
+(g D) P       -> (g P) - 
+      P (P u) ->       - (D u)
+      P (P u) ->       - (D u)
+      P (D g) ->       - (P g)
+      P (D g) ->       - (P g)
 ```
 zu zeigen ist also, dass Ketten der Länge <= n
-der Formen `u D`, `D u`, `P g`, `g P` auflösbar sind.
+der Formen `u D`, `D u`, `P g`, `g P` auflösbar/reduzierbar sind. (Damit ist gemeint dass sie sich in Ketten die nur aus - bestehen auflösen lassen)
 
 ## Beweis für `u D`
 Falls es für u (mit Länge <=n) eine Reduktion gibt,
