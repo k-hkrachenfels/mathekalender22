@@ -83,11 +83,11 @@ der Formen `u D`, `D u`, `P g`, `g P` auflösbar sind.
 
 ## Beweis für `u D`
 Falls es für u (mit Länge <=n) eine Reduktion gibt,
-dann muss diese den Schritt x1 P -> x2 - enthalten.
-Für die um D erweiterte Kette hat man statt dessen die Produktionen x1 P D -> x2 - P, was dann auf der 
-rechten Seite in x2 - - weiterentwickelt werden kann. Die Linke seite lässt sich dann weil unser u ja eine Länge kleiner n hatte mit der Induktionsannahme reduzieren, d.h. x2 ist reduzierbar.
+dann muss diese den Schritt `x1 P -> x2 -` enthalten.
+Für die um D erweiterte Kette hat man statt dessen die Produktionen `x1 P D -> x2 - P`, was dann auf der 
+rechten Seite in `x2 - - ` weiterentwickelt werden kann. Die Linke seite lässt sich dann weil unser u ja eine Länge kleiner n hatte mit der Induktionsannahme reduzieren, d.h. x2 ist reduzierbar.
 
-## Beweis für `D u``
+## Beweis für `D u`
 hier nicht aufgeführt aber analog zu `u D`
 
 ## Beweis für `g P`:
