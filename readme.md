@@ -30,11 +30,11 @@ Wahrscheinlichkeiten:
 
 ## Aufgabe 5
 Eine Lösung mit sieben Vergleichen ist: 
-1-2,2-3,1-3,4-5,5-6,4-6,7-8
+0-1,1-2,2-0, 3-4,4-5,5-3, 6-7 die Reihenfolge ist egal und wird durch den folgenden Graph ausgedrückt:
+![Lösung](5/result.png)
 [Programm zum Berechnen der Strategie ](5/bf.py) und zum Nachweis, dass es keine Lösung mit 5 Vergleichen gibt.
 [Beschreibung Algorithmus](5/description.md)
-### Lösung
-![Lösung](5/result.png)
+### Erklärung zur Lösung
 
 In den Dreierklicken kann maximal eine rote Lampe vorhanden sein, in der zweierklicke ebenfalls. Bei 4 roten Lampen ist mindestens eine dieser Bedingungen verletzt.
 
