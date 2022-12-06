@@ -11,7 +11,7 @@ def build_distributions(num_total, num_red):
             count+=1
 
     x = torch.zeros((num_total,count),dtype=torch.int)
-    print(count)
+    #print(count)
     
     col=0
     for i in range(2**num_total):
@@ -23,13 +23,12 @@ def build_distributions(num_total, num_red):
 
 def add_edges(i_start,j_start,steps,num_nodes,edges):
     if steps==0:
-        print(edges)
         return [edges]
     else:
         result=[]
         for i in range(num_nodes):
             for j in range(i+1,num_nodes):
-                if i>i or i==i_start and j>j_start:
+                if i>i_start or i==i_start and j>j_start:
                     edges_cloned = edges.copy()
                     edges_cloned.append((i,j))
                     result.extend(add_edges(i,j,steps-1,num_nodes,edges_cloned))
@@ -63,5 +62,5 @@ def find_solution_for(n, distribs):
     print(f"There is no sulution for {n}")
 
 d=build_distributions(8,4)
-#find_solution_for(6,d) 
+find_solution_for(6,d) 
 find_solution_for(7,d)
