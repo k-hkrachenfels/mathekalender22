@@ -1,5 +1,7 @@
 
 import torch
+import igraph as ig
+import matplotlib.pyplot as plt
 
 N=8
 
@@ -58,9 +60,35 @@ def find_solution_for(n, distribs):
         lowest_num_lights_of_worst_mapping = torch.min(lights_per_mapping)
         if(lowest_num_lights_of_worst_mapping.numpy()!=0):
             print(f"the following matrix defines a strategy for {n}: \n{a}")
-            return
+            return a
     print(f"There is no solution for {n}")
 
-d=build_distributions(8,4)
-find_solution_for(6,d) 
-find_solution_for(7,d)
+def visualize(a):
+    nodes = []
+    for i in range(a.shape[0]):
+        for j in range(a.shape[1]):
+            if a[i,j] == 1:
+                if j>i:
+                    nodes.append((i,j))
+    g = ig.Graph(N, nodes, directed=False)
+    fig, ax = plt.subplots()
+    ig.plot(g,
+        target=ax,
+        layout="circle",
+        vertex_label=range(g.vcount()),
+        vertex_color="lightblue")
+    plt.show()
+
+
+#d=build_distributions(8,4)
+#find_solution_for(6,d) 
+#a=find_solution_for(7,d)
+a = torch.tensor([[0, 1, 1, 0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 0, 0, 0, 0],
+        [1, 1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 1, 0, 0],
+        [0, 0, 0, 1, 0, 1, 0, 0],
+        [0, 0, 0, 1, 1, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 0, 0, 1, 0]], dtype=torch.int32)
+visualize(a)
