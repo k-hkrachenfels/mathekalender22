@@ -53,12 +53,29 @@ Programmsnippet für den Algorithmus:
 
 ```
 # für alle Adjazenzmatrizen mit n Verbindungen führe folgendes aus, d ist die matrix aller Belegungen
+
 r = a.matmul(d)
 lights_on = r.mul(d)
-column_sums= torch.sum(lights_on,dim=0)
-min_column = torch.min(column_sums)
-if(min_column.numpy()!=0):
+lights_per_mapping= torch.sum(lights_on,dim=0)
+lowest_num_lights_of_worst_mapping = torch.min(lights_per_mapping)
+if(lowest_num_lights_of_worst_mapping.numpy()!=0):
     print(f"the following matrix defines a strategy for {n}: \n{a}")
+    return
+```
+
+The program produces the following output:
+```
+There is no solution for 6
+matrices built
+the following matrix defines a strategy for 7: 
+tensor([[0, 1, 1, 0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 0, 0, 0, 0],
+        [1, 1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 1, 0, 0],
+        [0, 0, 0, 1, 0, 1, 0, 0],
+        [0, 0, 0, 1, 1, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 0, 0, 1, 0]], dtype=torch.int32)
 ```
 
 

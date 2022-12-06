@@ -54,12 +54,12 @@ def find_solution_for(n, distribs):
     for a in mats: 
         r = a.matmul(d)
         lights_on = r.mul(d)
-        column_sums= torch.sum(lights_on,dim=0)
-        min_column = torch.min(column_sums)
-        if(min_column.numpy()!=0):
+        lights_per_mapping= torch.sum(lights_on,dim=0)
+        lowest_num_lights_of_worst_mapping = torch.min(lights_per_mapping)
+        if(lowest_num_lights_of_worst_mapping.numpy()!=0):
             print(f"the following matrix defines a strategy for {n}: \n{a}")
             return
-    print(f"There is no sulution for {n}")
+    print(f"There is no solution for {n}")
 
 d=build_distributions(8,4)
 find_solution_for(6,d) 
