@@ -49,10 +49,10 @@ Folgende Überlegung zur Anzahl von Würfeln:
 Ein grüner Würfel in einer Ecke muss auf genau drei Seitenflächen vorkommen, deshalb können wir auf jeder Seitenfläche für jedes Eckquadrat 1/3 zählen. In der Mitte einer Seitenfläche zählen wir 1/2 weil jeder Mittel-Rand-Würfel auf genau zwei Flächen vorkommen muss. Das Mittelquadrat zählt einfach.
 
 Angenommen wir können eine Würfel bilden der auf allen Seitenflächen wie A aussieht dann haben wir 
-6 * 2 2/3 = 16 Würfel. Weniger geht nicht.
+6 * 2 2/3 = 16 grüne Päckchen. Weniger geht nicht.
 
 Angenommen wir können einen Würfel bilden der nur
-aus Seitenflächen B besteht und wir wählen den Würfel in der Mitte des Kubus, der nicht auf einer Seitenfläche sichtbar ist als grünen Würfel, dann haben wir 1 + 6*3 Päckchen = 19, mehr geht nicht.
+aus Seitenflächen B besteht und wir wählen den Würfel in der Mitte des Kubus, der nicht auf einer Seitenfläche sichtbar ist als grünen Würfel, dann haben wir 1 + 6*3 = 19 grüne Päckchen , mehr geht nicht.
 
 Damit sind wir eigentlich schon fertig, es müssen auf jeden Fall 16 oder mehr und 19 oder wenige grüne Päckchen sein - alle anderen Lösungen machen keinen Sinn.
 
