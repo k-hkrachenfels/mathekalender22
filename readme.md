@@ -1,4 +1,4 @@
-# Mathekalender Klasse 10+ 2022
+# Mathekalender 2022
 
 ## Aufgabe 1
 mit Blatt Papier gelöst
@@ -52,7 +52,7 @@ Angenommen wir können eine Würfel bilden der auf allen Seitenflächen wie A au
 6 * 2 2/3 = 16 Würfel. Weniger geht nicht.
 
 Angenommen wir können einen Würfel bilden der nur
-aus Würfeln B besteht und wir wählen den Würfel in der Mitte des Kubus, der nicht auf einer Seitenfläche sichtbar ist als grünen Würfel, dann haben wir 1 + 6*3 Päckchen = 19, mehr geht nicht.
+aus Seitenflächen B besteht und wir wählen den Würfel in der Mitte des Kubus, der nicht auf einer Seitenfläche sichtbar ist als grünen Würfel, dann haben wir 1 + 6*3 Päckchen = 19, mehr geht nicht.
 
 Damit sind wir eigentlich schon fertig, es müssen auf jeden Fall 16 oder mehr und 19 oder wenige grüne Päckchen sein - alle anderen Lösungen machen keinen Sinn.
 
@@ -66,3 +66,7 @@ Man müsste jetzt eigentlich noch zeigen, dass es auch möglich ist eine reale P
 
 ### Link auf Brute Force Programm
 [Programm](7/wuerfel.py)
+### Lösung
+```
+16 <= # gruene Päckchen <= 19
+```
