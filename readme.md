@@ -62,7 +62,7 @@ Man müsste jetzt eigentlich noch zeigen, dass es auch möglich ist eine reale P
 ![a](7/a.png) 
 
 ### Würfel mit nur Flächen von Typ B
-![a](7/b.png)
+tbd
 
 ### Link auf Brute Force Programm
 [Programm](7/wuerfel.py)
@@ -70,3 +70,5 @@ Man müsste jetzt eigentlich noch zeigen, dass es auch möglich ist eine reale P
 ```
 16 <= # gruene Päckchen <= 19
 ```
+## Aufgabe 8
+[Notizen](8/8.md)
