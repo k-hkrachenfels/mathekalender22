@@ -4,13 +4,13 @@ from collections import defaultdict
 
 class Child(ConstantSet):
     NASTI="Nasti"
+    JONA="Jona"
     MANU="Manu"
-    JONAS="Jonas"
     ULI="Uli"
 
-strategies = {  Child.NASTI: [(24,22),(16,10),(6,8),(4,5),(2,4)],
+strategies = {  Child.NASTI: [(24,20),(16,10),(6,8),(4,5),(2,4)],
+                Child.JONA: [(2,4),(6,8),(4,5),(24,20),(16,10)],
                 Child.MANU:  [(2,4),(4,5),(6,8),(16,10),(24,20)],
-                Child.JONAS: [(2,4),(6,8),(4,5),(24,20),(16,10)],
                 Child.ULI:   [(24,20),(6,8),(4,5),(2,4),(16,10)] }
 
 
@@ -38,7 +38,7 @@ u_ge_n = True
 # 9. Die gesamte Freude von Ulis Geschenken ist immer mindestens so groß wie die von Jona.
 u_ge_j = True
 
-for size in range(54):
+for size in range(100):
     result_joy = defaultdict(int)
     result_size = defaultdict(int)
     #print(f"size=",size)
@@ -50,8 +50,10 @@ for size in range(54):
             result_size[child]+=s
             result_joy[child]+=j
         #print(f"size={size}, child={child}, joy={result_joy[child]}, actual_size={result_size[child]}")
-    
+        
+            
     # 2. Die gesamte Freude von Nastis Geschenken ist immer mindestens so groß wie die von Manu.
+    print(f"size={size}, j={result_joy[Child.JONA]}, m={result_joy[Child.MANU]}")
     
     if result_joy[Child.NASTI] < result_joy[Child.MANU]:
         n_ge_m = False
@@ -63,7 +65,7 @@ for size in range(54):
         n_ge_u = False
 
     # 4. Die gesamte Freude von Manus Geschenken ist immer mindestens so groß wie die von Jona.
-    if result_joy[Child.MANU] < result_joy[Child.JONAS]:
+    if result_joy[Child.MANU] < result_joy[Child.JONA]:
         m_ge_j = False
 
     # 5. Die gesamte Freude von Manus Geschenken ist immer mindestens so groß wie die von Uli.
@@ -71,11 +73,11 @@ for size in range(54):
         m_ge_u = False
 
     # 6. Die gesamte Freude von Jonas Geschenken ist immer mindestens so groß wie die von Nasti.
-    if result_joy[Child.JONAS] < result_joy[Child.NASTI]:
+    if result_joy[Child.JONA] < result_joy[Child.NASTI]:
         j_ge_n = False
 
     # 7. Die gesamte Freude von Jonas Geschenken ist immer mindestens so groß wie die von Manu.
-    if result_joy[Child.JONAS] < result_joy[Child.MANU]:
+    if result_joy[Child.JONA] < result_joy[Child.MANU]:
         j_ge_m = False
 
     # 8. Die gesamte Freude von Ulis Geschenken ist immer mindestens so groß wie die von Nasti.
@@ -83,7 +85,7 @@ for size in range(54):
         u_ge_n = False
 
     # 9. Die gesamte Freude von Ulis Geschenken ist immer mindestens so groß wie die von Jona.
-    if result_joy[Child.ULI] < result_joy[Child.JONAS]:
+    if result_joy[Child.ULI] < result_joy[Child.JONA]:
         u_ge_j = False
 
 
