@@ -72,3 +72,6 @@ tbd
 ```
 ## Aufgabe 8
 [Notizen](8/8.md)
+
+# Aufgabe 9
+Antowrt Nr. 7: [Programm](9/9.py)
