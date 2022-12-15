@@ -100,6 +100,8 @@ Allgemeine Strategie noch nicht beschreibbar - Simulation findet win Situation f
 # Aufgabe 14
 Rentiere im Gehege: [Aufgabe](14/MK-2022-KH-ReindeerBreeding-de-1.pdf)
 
+Lösung: Nr. 9
+
 # Aufgabe 15
 Verlorene Wunschzettel: [Aufgabe](15/MK-2022-Griesbach-Wunschzettel-de.pdf)
 
