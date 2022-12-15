@@ -1,17 +1,9 @@
 from typing import Tuple
-from attrs import define, field
 from util.constant_set import ConstantSet
 import numpy as np
 from PIL import Image
-import torch
-import inspect
 from collections import namedtuple
 from copy import deepcopy, copy
-from mcts import Node
-from functools import cache
-import random
-import xxhash
-
 
 class Field(ConstantSet):
     A = 1 
@@ -32,21 +24,16 @@ field_images = {
 }
 
 #@define
-class Board(Node):
-    def __init__(self,xmax,ymax,):
+class Board():
+
+    def __init__(self,xmax,ymax):
         self.xmax = xmax
         self.ymax = ymax
         self.state = np.zeros((xmax,ymax))
         self.state[xmax-1,ymax-1]=Field.GELEE
-        x=2
-        y=0
-        self.state[:x+1,:y+1]=Field.A
-        x=1
-        y=1
-        self.state[:x+1,:y+1]=Field.B
+   
 
-
-    def visualize(self, state, i):
+    def visualize(self, state, tag=""):
         TILE_SIZE_X = 172
         TILE_SIZE_Y = 174
         xmax = self.xmax
@@ -61,13 +48,14 @@ class Board(Node):
                 field_img = field_images[field]
                 tile = Image.open(field_img)
                 img.paste(tile,pos)
-        img.save(f'13/output/out{i}.png')
+        img.save(f'13/output/out{tag}.png')
         print("Board visualized")
 
 
     #@cache
     def find_children(self, state):
         children = np.transpose((state==Field.EMPTY).nonzero())
+        np.flip(children,axis=0)
         return children
         
 
@@ -86,78 +74,58 @@ class Board(Node):
     def reward(self):
        pass
 
-    def draw(self, state, move):
+    def draw(self, state, move, field):
         x,y = move
-        state[:x+1,:y+1]=Field.A
+        state[:x+1,:y+1]=field
 
     def altoDraw(self, state, num_moves: int) -> bool:
+        states=[state]
+        result=Player.BILBO
         for move in self.find_children(state):
             next_state = state.copy()
-            self.draw(next_state, move)
-            win, states = self.bilboDraw(next_state, num_moves+1)
+            self.draw(next_state, move, Field.A)
+            win, win_states = self.bilboDraw(next_state, num_moves+1)
             if win==Player.ALTO:
+                result=Player.ALTO
                 print("alto  ", num_moves, "->", move)
-                states.append(state)
+                states.extend(win_states)
                 return Player.ALTO, states
-        return Player.BILBO,[state]
+        return result,states
 
-    def find_all_altoDraw(self, state, num_moves: int) -> bool:
-        win = Player.BILBO
-        for move in self.find_children(state):
-            next_state = state.copy()
-            self.draw(next_state, move)
-            win, states = self.bilboDraw(next_state, num_moves+1)
-            if win==Player.ALTO:
-                print("alto  ", num_moves, "->", move)
-                states.append(state)
-                return Player.ALTO, states
-        return Player.BILBO,[state]
 
     def bilboDraw(self, state, num_moves: int) -> bool:
+        states = [state]
+        result = Player.ALTO
         for move in self.find_children(state):
             next_state = state.copy()
-            self.draw(next_state, move)
-            win, states = self.altoDraw(next_state, num_moves+1)
+            self.draw(next_state, move, Field.B)
+            win, win_states = self.altoDraw(next_state, num_moves+1)
             if win==Player.BILBO:
-                states.append(state)
+                states.extend(win_states)
                 return Player.BILBO, states
-        return Player.ALTO,[state]
-
-    #impl abstractmethod
-    def __hash__(self):
-        "Nodes must be hashable"
-        return xxhash.xxh32_intdigest(self.state.data.tobytes())
-
-
-    #impl abstractmethod
-    def __eq__(node1, node2):
-        "Nodes must be comparable"
-        return node1.__hash__() == node2.__hash__()
+        return Player.ALTO,states
         
 
-# def rollout(state):
-#     print(state)
-#     possible_actions = state.get_possible_actions()
-#     while len(possible_actions)>0:
-#         action = np.random.choice(possible_actions,1)[0]
-#         action_ordinal = Direction.ordinal(action)
-#         print(f"action={action}")
-#         transition = state.step(action_ordinal)
-#         state, action, next_state, reward = transition
-#         state = next_state
-#         possible_actions = state.get_possible_actions()
-#     return state
-
 if __name__ == "__main__":  
-    board = Board(5,4)
-    board.visualize(board.state,"-")
-    #children=board.find_children(board.state)
+    board = Board(7,4)
 
-    win,states=board.altoDraw(board.state, 0)
-    for i,state in enumerate(states):
-        print(state.shape)
-        print(state)
-        board.visualize(state,i)
+    # play a game as bilbo
+    print(f"board x=",board.xmax,",y=",board.ymax)
+    board.visualize(board.state) 
+    while True:
+        x = int(input("x="))
+        y = int(input("y="))
+        move=(x,y)
+        print(move)
+        board.draw(board.state,move,Field.B)
+        board.visualize(board.state)
+        win,states=board.altoDraw(board.state, 0)
+        if win== Player.ALTO:
+            print("you will loose")
+        else:
+            print("you can win")
+        board.visualize(states[1])
+        board.state=states[1]
 
 
     if win==Player.ALTO:
