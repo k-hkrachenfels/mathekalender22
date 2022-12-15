@@ -75,3 +75,30 @@ tbd
 
 # Aufgabe 9
 Antowrt Nr. 7: [Programm](9/9.py)
+
+# Aufgabe 10
+
+# Aufgabe 11
+Heisshunger: [Aufgabe](11/MK-2022-HS-Heisshunger-de.pdf)
+
+Lösung: Nr. 4 [Rechnungen dazu](11/mathe-advent-wahrscheinlichkeiten.pdf)
+# Aufgabe 12
+
+# Aufgabe 13
+Schokoladenspiel: [Aufgabe](13/MK-2022-PR-Schokoladenspiel-de-1.pdf)
+
+Lösung: Nr 10. [Programm zur Simulation mit min-max](13/board.py)
+
+Empirisch: Lösung Nr. 10
+
+Allgemeine Strategie für quadratische Felder ist klar, für 2xn Felder auch
+
+Allgemeine Strategie noch nicht beschreibbar - Simulation findet win Situation für Felder kleiner als 6x4 rechnerisch noch handlebar
+(evtl. noch Programm auf dynamische Programmierung umstellen)
+
+
+# Aufgabe 14
+Rentiere im Gehege: [Aufgabe](14/MK-2022-KH-ReindeerBreeding-de-1.pdf)
+
+# Aufgabe 15
+Verlorene Wunschzettel: [Aufgabe](15/MK-2022-Griesbach-Wunschzettel-de.pdf)
