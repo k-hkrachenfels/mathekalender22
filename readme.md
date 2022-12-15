@@ -91,9 +91,9 @@ Lösung: Nr 10. [Programm zur Simulation mit min-max](13/board.py)
 
 Empirisch: Lösung Nr. 10
 
-Allgemeine Strategie für quadratische Felder ist klar, für 2xn Felder auch
+Strategie für quadratische Felder ist klar, für 2xn Felder auch
 
-Allgemeine Strategie noch nicht beschreibbar - Simulation findet win Situation für Felder kleiner als 6x4 rechnerisch noch handlebar
+Allgemeine Strategie noch nicht beschreibbar - Simulation findet win Situation für Felder kleiner als 6x4 rechnerisch gerade noch möglich, danach dauert es zu lange
 (evtl. noch Programm auf dynamische Programmierung umstellen)
 
 
@@ -102,3 +102,11 @@ Rentiere im Gehege: [Aufgabe](14/MK-2022-KH-ReindeerBreeding-de-1.pdf)
 
 # Aufgabe 15
 Verlorene Wunschzettel: [Aufgabe](15/MK-2022-Griesbach-Wunschzettel-de.pdf)
+
+Lösung: Nr. 9, [Programm](15/15.py)
+
+Ausgabe des Programms:
+```
+2535 ['0-1,t:10,c:250', '1-6,t:17,c:250', '6-5,t:25,c:1500', '1-2,t:37,c:2055', '0-4,t:47,c:2055', '4-3,t:48,c:2535']
+```
+D.h. mit dem angegebenen Weg haben wir im Durchschnitt 25.35 Stunden.
