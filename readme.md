@@ -31,6 +31,7 @@ Wahrscheinlichkeiten:
 ## Aufgabe 5
 Eine Lösung mit sieben Vergleichen ist: 
 0-1,1-2,2-0, 3-4,4-5,5-3, 6-7 die Reihenfolge ist egal und wird durch den folgenden Graph ausgedrückt:
+
 <img src="5/result.png" alt="drawing" width="400"/>
 
 [Programm zum Berechnen der Strategie ](5/bf.py) und zum Nachweis, dass es keine Lösung mit 5 Vergleichen gibt.
