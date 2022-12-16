@@ -31,7 +31,8 @@ Wahrscheinlichkeiten:
 ## Aufgabe 5
 Eine Lösung mit sieben Vergleichen ist: 
 0-1,1-2,2-0, 3-4,4-5,5-3, 6-7 die Reihenfolge ist egal und wird durch den folgenden Graph ausgedrückt:
-![Lösung](5/result.png)
+<img src="5/result.png" alt="drawing" width="400"/>
+
 [Programm zum Berechnen der Strategie ](5/bf.py) und zum Nachweis, dass es keine Lösung mit 5 Vergleichen gibt.
 [Beschreibung Algorithmus](5/description.md)
 ### Erklärung zur Lösung
@@ -42,7 +43,8 @@ In den Dreierklicken kann maximal eine rote Lampe vorhanden sein, in der zweierk
 [Programm](6/run.py)
 
 ## Aufgabe 7
-![Lösung](7/cube.png)
+<img src="7/cube.png" alt="drawing" width="400"/>
+
 Man kann sich leicht überlegen, dass die Seiten des Würfels alle wie A und B oder Rotationen von A und B aussehen.
 
 Folgende Überlegung zur Anzahl von Würfeln:
@@ -59,7 +61,7 @@ Damit sind wir eigentlich schon fertig, es müssen auf jeden Fall 16 oder mehr u
 Man müsste jetzt eigentlich noch zeigen, dass es auch möglich ist eine reale Päckchenkombination mit den Flächen A und B zu erzeugen. Man sieht das leicht hier (und könnte natürlich auch hier einfach zählen und kommt auf dieselben Zahlen):
 
 ### Würfel mit nur Flächen von Typ A
-![a](7/a.png) 
+<img src="7/a.png" alt="drawing" width="400"/>
 
 ### Würfel mit nur Flächen von Typ B
 tbd
