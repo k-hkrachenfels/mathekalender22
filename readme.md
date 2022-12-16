@@ -120,7 +120,10 @@ Lösung: Nr 3 = 8 Lichter müssen angemacht werden.
 
 Rechnerische Lösung [Prog](16) von der Komplexität für 6,7 oder 8 Züge zu komplex (rechnerisch aufwändig)
 Begründung: 
-Folgendes ist eine Lösung:![example](16/loesung-mit-8.png)
+Folgendes Skizze zeigt eine Lösung:
+
+<img src="16/loesung-mit-8.png" alt="drawing" width="400"/>
 
 Beweisidee, dass nichts besseres möglich ist:
-Angenommen die ausgefüllten Felder bedecken ein nxm Rechteck. Durch ein zusätzliches Lichet kann entweder ein n+1 x m+1 Rechteck gefüllt werden oder man kann ein n x m+2 oder n+2 x m Rechteck füllen. Da man in beide Richtungen 8 Felder benötigt sind dann 8 Lichter nötig....
+
+Angenommen die ausgefüllten Felder bedecken ein nxm Rechteck. Durch ein zusätzliches Licht kann entweder ein n+1 x m+1 Rechteck gefüllt werden oder man kann ein n x m+2 oder n+2 x m Rechteck füllen. Da man in beide Richtungen 8 Felder benötigt sind dann 8 Lichter nötig....
