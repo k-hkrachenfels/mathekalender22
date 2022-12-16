@@ -112,3 +112,15 @@ Ausgabe des Programms:
 2535 ['0-1,t:10,c:250', '1-6,t:17,c:250', '6-5,t:25,c:1500', '1-2,t:37,c:2055', '0-4,t:47,c:2055', '4-3,t:48,c:2535']
 ```
 D.h. mit dem angegebenen Weg haben wir im Durchschnitt 25.35 Stunden.
+
+# Aufgabe 16
+Weihnachtsbaum: [Aufgabe](16/MK-2022-BW-Weihnachtsbaum-de.pdf)
+
+Lösung: Nr 3 = 8 Lichter müssen angemacht werden.
+
+Rechnerische Lösung [Prog](16) von der Komplexität für 6,7 oder 8 Züge zu komplex (rechnerisch aufwändig)
+Begründung: 
+Folgendes ist eine Lösung:![example](16/loesung-mit-8.png)
+
+Beweisidee, dass nichts besseres möglich ist:
+Angenommen die ausgefüllten Felder bedecken ein nxm Rechteck. Durch ein zusätzliches Lichet kann entweder ein n+1 x m+1 Rechteck gefüllt werden oder man kann ein n x m+2 oder n+2 x m Rechteck füllen. Da man in beide Richtungen 8 Felder benötigt sind dann 8 Lichter nötig....

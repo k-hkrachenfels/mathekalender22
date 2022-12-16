@@ -31,8 +31,6 @@ times = {
     (0,4):10,
     (4,0):10}
 
-
-
 class Game():
 
     def __init__(self):
@@ -69,11 +67,8 @@ class Game():
                 if returned_count<min_count:
                     min_count=returned_count
                     best_path=returned_path
-
         return min_count, best_path
             
-
-
 
 if __name__ == "__main__":  
     game = Game()
