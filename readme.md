@@ -129,4 +129,20 @@ Folgendes Skizze zeigt eine Lösung:
 
 Beweisidee, dass nichts besseres möglich ist:
 
-Angenommen die ausgefüllten Felder bedecken ein nxm Rechteck. Durch ein zusätzliches Licht kann entweder ein n+1 x m+1 Rechteck gefüllt werden oder man kann ein n x m+2 oder n+2 x m Rechteck füllen. Da man in beide Richtungen 8 Felder benötigt sind dann 8 Lichter nötig....
+Angenommen die ausgefüllten Felder bedecken ein nxm Rechteck. Durch ein zusätzliches Licht kann entweder ein n+1 x m+1 Rechteck gefüllt werden oder man kann ein n x m+2 oder n+2 x m Rechteck füllen. Da man in beide Richtungen 8 Felder benötigt sind dann 8 Lichter nötig - aber was wenn man teilflächen verbindet...
+
+# Aufgabe 17
+## Rüpelhafte Rentiere
+[Aufgabe](17/MK-2022-Rhijn-Reindeer-de.pdf)
+<img src="17/r_rentiere.png" alt="drawing" width="400"/>
+
+Lösung: 6 Möglichkeiten -> Nr. 5
+
+
+
+
+## Grundidee
+<img src="17/grundidee.png" alt="drawing" width="200"/>
+
+
+Jeder der eingekreisten Knoten hat eine ugerade Anzahl von wegführenden Kanten benötigt aber eine gerade Anzahl (so dass die angrenzenden Flächen jeweils abwechslend mit rot braun "gefärbt" werden können). Wir haben also 5 Kantenenden und benötigen 3 Kanten. Man kann sich dann durchüberlegen, dass es dann 6 Möglichkeiten gibt, die zu einer zulässigen Lösung führen (3 Möglichkeiten und deren Spiegelungen)
