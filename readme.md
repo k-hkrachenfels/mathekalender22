@@ -134,6 +134,7 @@ Angenommen die ausgefüllten Felder bedecken ein nxm Rechteck. Durch ein zusätz
 # Aufgabe 17
 ## Rüpelhafte Rentiere
 [Aufgabe](17/MK-2022-Rhijn-Reindeer-de.pdf)
+
 <img src="17/r_rentiere.png" alt="drawing" width="400"/>
 
 Lösung: 6 Möglichkeiten -> Nr. 5
