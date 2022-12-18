@@ -1,10 +1,10 @@
 # Mathekalender 2022
 
 ## Aufgabe 1
-mit Blatt Papier gelöst
+Chocolate Bars: [Aufgabe](1/MK-2022-Raharinirina-ChocolateBars-en.pdf)
 
 ## Aufgabe 2
-Brute force durchprobiert in python:
+Arrowmatics: [Aufgabe](2/02%20Arrowmatics%20%E2%80%93%20Mathekalender.pdf)
 ```
 a=10, b=15, c=40, d=80
 a=10, b=20, c=40, d=75
@@ -15,7 +15,8 @@ a=10, b=35, c=40, d=60
 Es gibt 5 Möglichkeiten
 
 ## Aufgabe 3
-Erste Teilaufgabe  
+Chit-chat in the Workshop: [Aufgabe](3/MK-2022-Paul-Wichtel-en.pdf) 
+
 Wahrscheinlichkeiten:
 ```
 1* 1/2 * 2/3 * ... * 11/12 = 1/12
@@ -26,9 +27,13 @@ Wahrscheinlichkeiten:
 1+1/2+...+1/12 =  3.1 ~ 3
 ```
 ## Aufgabe 4
+Shipping Presents: [Aufgabe](4/MK-2022-Stegehuis-Presents-en.pdf)
+
 [Beweis](4/beweis.md) 
 
 ## Aufgabe 5
+Lights On: [Aufgabe](5/MK-2022-Weedage-LightsOn-en.pdf)
+
 Eine Lösung mit sieben Vergleichen ist: 
 0-1,1-2,2-0, 3-4,4-5,5-3, 6-7 die Reihenfolge ist egal und wird durch den folgenden Graph ausgedrückt:
 
@@ -41,9 +46,13 @@ Eine Lösung mit sieben Vergleichen ist:
 In den Dreierklicken kann maximal eine rote Lampe vorhanden sein, in der zweierklicke ebenfalls. Bei 4 roten Lampen ist mindestens eine dieser Bedingungen verletzt.
 
 ## Aufgabe 6
+Wuthering Roads: [Aufgabe](6/MK-2022-Luecke-Heimweg-en.pdf)
+
 [Programm](6/run.py)
 
 ## Aufgabe 7
+Gift Cube: [Aufgabe](7/MK-2022-Schritt-Geschenkewuerfel-en.pdf)
+
 <img src="7/cube.png" alt="drawing" width="400"/>
 
 Man kann sich leicht überlegen, dass die Seiten des Würfels alle wie A und B oder Rotationen von A und B aussehen.
@@ -74,13 +83,17 @@ tbd
 16 <= # gruene Päckchen <= 19
 ```
 ## Aufgabe 8
+The Canal: [Aufgabe](8/MK-2022-Karsai-Canal-en.pdf)
+
 [Notizen](8/8.md)
 
 # Aufgabe 9
+Wish List Optimizationd: [Aufgabe](9/MK-2022-KK-Wunschzettel-en.pdf)
+
 Antowrt Nr. 7: [Programm](9/9.py)
 
 # Aufgabe 10
-
+Elections at the North Pole: [Aufgabe](10/MK-2022-Junker-Wahlen-en.pdf)
 # Aufgabe 11
 Heisshunger: [Aufgabe](11/MK-2022-HS-Heisshunger-de.pdf)
 
@@ -154,5 +167,5 @@ Lösung: Nr. 8
 
 Aussage a ist richtig. Siehe auch [Programm](18/18.py)
 
-Aussage d ist falsch: Für den i-ten  Schritt muss n_i+1+n_i/2 gerade sein. Damit das auf Dauer passieren kann müsste sich das Resultat n_i 2**i mal durch zwei teilen lassen, es müsste sich also bei jeden Schritt zumindest verdoppeln, was nicht der Fall ist....
+Aussage d ist falsch: Für den i-ten  Schritt muss n_i so stark wie eine Zweierpotenz wachsen, es wächst aber nur um den Faktor 1.5 + konstante, d.h. es geht nicht auf Dauer.
 
