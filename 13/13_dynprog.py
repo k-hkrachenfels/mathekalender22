@@ -9,173 +9,199 @@ from functools import cache
 
 
 
+class Field(ConstantSet):
+    A = 1 
+    SCHOKOLADE = 0 
+    GELEE = 3 
 
-# field_images = {
-#     Field.A: '13/tiles/a.png',
-#     Field.B: '13/tiles/b.png',
-#     Field.EMPTY: '13/tiles/empty.png',
-#     Field.GELEE :'13/tiles/gelee.png'
-# }
+class Player(ConstantSet):
+    ALTO = True
+    BILBO = False
 
-class Node(ABC):
-    """
-    A representation of a single board state.
-    MCTS works by constructing a tree of these Nodes.
-    Could be e.g. a chess or checkers board state.
-    """
+field_images = {
+    Field.A: '13/tiles/a.png',
+    Field.SCHOKOLADE: '13/tiles/empty.png',
+    Field.GELEE :'13/tiles/gelee.png'
+}
 
-    @abstractmethod
-    def find_children(self):
-        "All possible successors of this board state"
-        return set()
 
-    @abstractmethod
-    def find_random_child(self):
-        "Random successor of this board state (for more efficient simulation)"
-        return None
+N=5
 
-    @abstractmethod
-    def is_terminal(self):
-        "Returns True if the node has no children"
+def increment(a, column, max_row):
+    if column>=len(a):
+        return False
+    new_max_row = min(a[column],max_row)
+    # try to find a column to the right with less than max_row fields set
+    if increment(a, column+1, new_max_row):
         return True
-
-    @abstractmethod
-    def reward(self):
-        "Assumes `self` is terminal node. 1=win, 0=loss, .5=tie, etc"
-        return 0
-
-    @abstractmethod
-    def __hash__(self):
-        "Nodes must be hashable"
-        return 123456789
-
-    @abstractmethod
-    def __eq__(node1, node2):
-        "Nodes must be comparable"
-        return True
-N=1
-class State(Node):
-
-    # def __init__(self, initial_state=np.zeros((N),dtype=int)):
-    #     self.state = initial_state
-
-    #@cache
-    def find_children(self, state, column=0):
-        children=set()
-        if column == N:
-            return children
-        elif np.all(state==N+1):
-            return []
+    else:
+        # all columns to the right already have the same size
+        # we try if we can increase the current column
+        if a[column]<max_row:
+            # we can
+            a[column]+=1
+            return True
         else:
-            for i in range(state[0],N+1):
-                state = state.copy()
-                state[column]=i
-                children.extend(self.find_children(state,column+1))                
-        return children
+            # we are already filled 
+            # no more moves possible
+            return False
 
-    def find_random_child(self):
-        return super().find_random_child()
-
-    def reward(self):
-        return super().reward()
-
-    def is_terminal(self):
-        return super().is_terminal()
-
-    def __eq__(node1, node2):
-        return super().__eq__(node2)
-
-    def __hash__(self):
-        return super().__hash__()
+def move( state, x, y):
+    for col in range(x):
+        if state[col]<y:
+            state[col]=y
+    return state
 
 
-class Game():
+class WinTree:
+    """a tree that keeps track of all win states with a fast lookup scheme"""
+    def __init__(self, num_columns) -> None:
+        self.num_columns = num_columns
+        self.root = [None]*num_columns
     
+    def add_state(self,a):
+        if(len(a)==0):
+            return
+        current = a[0]
+        if self.root[current]==None:
+            self.root[current]=WinTree(self.num_columns)
+        self.root[current].add_state(a[1:])
 
-    def __init__(self, initial=np.zeros((N))):
-        self.state = initial
-   
-    def visualize(self, state, tag=""):
-        TILE_SIZE_X = 172
-        TILE_SIZE_Y = 174
-        xmax = self.xmax
-        ymax = self.ymax
-        img = Image.new(mode='RGB', size=(TILE_SIZE_X*xmax, TILE_SIZE_Y*ymax))
-        for y in range(ymax):
-            pos_y = (ymax-y-1) * TILE_SIZE_Y
-            for x in range(xmax):
-                pos_x = x * TILE_SIZE_X
-                pos=(pos_x,pos_y)
-                field = state[x,y]
-                field_img = field_images[field]
-                tile = Image.open(field_img)
-                img.paste(tile,pos)
-        img.save(f'13/output/out{tag}.png')
-        print("Board visualized")
+    def is_win(self,a):
+        # check if a is element in tree
+        if len(a)==0:
+            return True
+        child = self.root[a[0]]
+        if child:
+            return child.is_win(a[1:])
+        else:
+            return False
 
 
-    #@cache
-    def find_children(self, state):
-        children = np.transpose((state==Field.EMPTY).nonzero())
-        np.flip(children,axis=0)
-        return children
+    def __repr__(self):
+        result=[]
+        for i, subtree in enumerate(self.root):
+            if subtree:
+                for sublist in subtree.__repr__():
+                    tail = [i]
+                    tail.extend(sublist)
+                    result.append(tail)
+        if len(result)==0:
+            return [[]]
+        else:
+            return result
+           
+    def __str__(self):
+        return str(self.__repr__())
+
+def visualize(s, rows, columns, tag=""):
+    TILE_SIZE_X = 172
+    TILE_SIZE_Y = 174
+    
+    state = np.zeros((rows,columns),dtype=int)
+    for column,row in enumerate(s):
+        state[column,:row]=Field.A
+    img = Image.new(mode='RGB', size=(TILE_SIZE_X*N, TILE_SIZE_Y*N))
+    for y in range(rows):
+        pos_y = (rows-y-1) * TILE_SIZE_Y
+        for x in range(columns):
+            pos_x = x * TILE_SIZE_X
+            pos=(pos_x,pos_y)
+            field = state[x,y]
+            field_img = field_images[field]
+            tile = Image.open(field_img)
+            img.paste(tile,pos)
+    img.save(f'13/output/out{tag}.png')
+    print("Board visualized")
+    
+def test():
+    # initialize new Board with COL columns
+    ROWS=3
+    COLS=3
+    a = [0]*COLS
+
+    # get all possible states when board has ROWS rows
+
+    while increment(a,0,ROWS):
+        print(a)
+
+    visualize([3,2,1],rows=ROWS,columns=COLS)
+
+    # manually construct simple tree
+    tree1 = WinTree(ROWS+1)
+    tree2 = WinTree(ROWS+1)
+    tree3 = WinTree(ROWS+1)
+    tree4 = WinTree(ROWS+1)
+    tree3.root[2]=tree4
+    tree2.root[2]=tree3
+    tree1.root[3]=tree2
+    print(tree1)        
+    print(f"tree1.is_win([3,2,2] = {tree1.is_win([3,2,2])}")   
+    print(f"tree1.is_win([3,2,1] = {tree1.is_win([3,2,1])}")   
+
+    tree = WinTree(num_columns=4) 
+    tree.add_state([1,1,1])
+    print(f"tree.is_win([3,2,2] = {tree.is_win([3,2,2])}")   
+    print(f"tree.is_win([3,2,1] = {tree.is_win([3,2,1])}")   
+    state=[1,1,1]
+    visualize(state,rows=ROWS,columns=COLS)  
+    state=move(state,2,2)  
+
+    visualize(state,rows=ROWS,columns=COLS,tag="m")  
+
+@cache
+def final_state_str(ROWS):
+    final_state_str = str([ROWS]*ROWS)
+    return final_state_str
+
+def is_win( tree, s, ROWS):
+    print(s)
+    if str(s) == final_state_str(ROWS):
+        return False
+
+    while increment(s,0,ROWS):
+        state=s.copy()
+        # try lookup
+        if tree.is_win(state):
+            return True, None
+        win_opponent = is_win(tree, state, ROWS)
+        if not win_opponent:
+            # update lookup
+            tree.add_state(state)
+            return True, None    
         
-
-    #impl abstractmethod
-    def find_random_child(self):
-        "Random successor of this board state (for more efficient simulation)"
-        return random.sample(self.find_children(),1)[0]
-        
-
-    #impl abstractmethod
-    def is_terminal(self, state):
-        "Returns True if the node has no children" 
-        return len(self.find_children(state))==0
-
-    #impl abstractmethod
-    def reward(self):
-       pass
-
-    def draw(self, state, move, field):
-        x,y = move
-        state[:x+1,:y+1]=field
-
-    def altoDraw(self, state, num_moves: int) -> bool:
-        states=[state]
-        result=Player.BILBO
-        for move in self.find_children(state):
-            next_state = state.copy()
-            self.draw(next_state, move, Field.A)
-            win, win_states = self.bilboDraw(next_state, num_moves+1)
-            if win==Player.ALTO:
-                result=Player.ALTO
-                print("alto  ", num_moves, "->", move)
-                states.extend(win_states)
-                return Player.ALTO, states
-        return result,states
-
-
-    def bilboDraw(self, state, num_moves: int) -> bool:
-        states = [state]
-        result = Player.ALTO
-        for move in self.find_children(state):
-            next_state = state.copy()
-            self.draw(next_state, move, Field.B)
-            win, win_states = self.altoDraw(next_state, num_moves+1)
-            if win==Player.BILBO:
-                states.extend(win_states)
-                return Player.BILBO, states
-        return Player.ALTO,states
-        
+    return False,s
 
 if __name__ == "__main__":  
+    # initialize new Board with COL columns
+    ROWS=3
+    COLS=3
+    a = [0]*COLS
+    win_tree = WinTree(ROWS+1)
+    #win_tree.add_state([3,3,3])
 
-    s = State()
-    state = np.array((N),dtype=int)
-    print(s.find_children(state))
-    print(s.shape)
+    w,state=is_win(win_tree,[1,0,0],ROWS)
+    print(w,state)
 
-    # board = Board(7,4)
+
+
+
+   
+
+
+
+    # COLS=3
+    # ROWS=3
+    # s = State()
+    # state = np.array((COLS),dtype=int)
+    # visualize(s, ROWS, COLS)
+    # # print(s.find_children(state))
+    # # print(s.shape)
+
+    # # board = Board(7,4)
+    # x = int(input("x="))
+    # y = int(input("y="))
+    # s = move(s,x,y)
 
     # # play a game as bilbo
     # print(f"board x=",board.xmax,",y=",board.ymax)

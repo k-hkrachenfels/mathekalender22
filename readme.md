@@ -147,3 +147,12 @@ Lösung: 6 Möglichkeiten -> Nr. 5
 
 
 Jeder der eingekreisten Knoten hat eine ugerade Anzahl von wegführenden Kanten benötigt aber eine gerade Anzahl (so dass die angrenzenden Flächen jeweils abwechslend mit rot braun "gefärbt" werden können). Wir haben also 5 Kantenenden und benötigen 3 Kanten. Man kann sich dann durchüberlegen, dass es dann 6 Möglichkeiten gibt, die zu einer zulässigen Lösung führen (3 Möglichkeiten und deren Spiegelungen)
+# Aufgabe 18
+Auf und ab: [Aufgabe](18/MK-2022-Hercher-Zahlenspiel-de.pdf)
+ 
+Lösung: Nr. 8
+
+Aussage a ist richtig. Siehe auch [Programm](18/18.py)
+
+Aussage d ist falsch: Für den i-ten  Schritt muss n_i+1+n_i/2 gerade sein. Damit das auf Dauer passieren kann müsste sich das Resultat n_i 2**i mal durch zwei teilen lassen, es müsste sich also bei jeden Schritt zumindest verdoppeln, was nicht der Fall ist....
+
