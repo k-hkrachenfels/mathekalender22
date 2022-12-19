@@ -169,3 +169,19 @@ Aussage a ist richtig. Siehe auch [Programm](18/18.py)
 
 Aussage d ist falsch: Für den i-ten  Schritt muss n_i so stark wie eine Zweierpotenz wachsen, es wächst aber nur um den Faktor 1.5 + konstante, d.h. es geht nicht auf Dauer.
 
+# Aufgabe 19
+Der Weihnachtsmann braucht Optimalen Transport: [Aufgabe](19/MK-2022-Altekrueger-OptimalTransport-de.pdf)
+
+[Programm](19/19.py) auf Basis von pytorch mit Gradientenabstieg.
+
+Man findet durch Gradientenabstieg mehrere Minima, unter anderem:
+```
+    L1   L2   L3   L4   L5   L6
+F1 100  325    0    0   75    0 
+F2   0    0    0    0  125  275 
+F3   0  125  300  400    0   75  
+```
+und erhält 8150 Stunden.
+
+-> Nr. 8
+Allerdings ohne Beweis, dass es nichts besseres gibt.
