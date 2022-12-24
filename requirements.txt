@@ -1,3 +1,5 @@
 np
 torch
 igraph
+pulp
+sympy

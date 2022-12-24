@@ -6,14 +6,14 @@ from torch import nn
 FACTORY = [ 500, 400, 900]
 STORES = [100, 450, 300, 400, 200, 350 ]
 cost_matrix = torch.FloatTensor([
-            [2, 4, 10000, 10000 , 5, 8],
+            [2, 4, 1000000, 1000000 , 5, 8],
             [7, 8, 8, 11, 3, 5],
             [8, 6, 5, 4 , 9, 9]])
 
 class CostModel(nn.Module):
     def __init__(self) -> None:
         super().__init__()
-        shipments = torch.rand((3,6))                 #1./cost_matrix
+        shipments = torch.abs(torch.rand((3,6))) *10                #1./cost_matrix
         self.shipments = torch.nn.parameter.Parameter(shipments)
 
     def forward(self, x):
@@ -21,7 +21,7 @@ class CostModel(nn.Module):
 
 
 model = CostModel()
-optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 np.set_printoptions(precision=2)
 
 for i in range(10000000):
@@ -29,9 +29,9 @@ for i in range(10000000):
     out,shipments=model.forward(cost_matrix)
     # loss is quadratic error 
     # based on shipped items per location
-    l_store = 100*torch.sum(((torch.sum(shipments, axis=0)-torch.FloatTensor(STORES))/1.)**2)
+    l_store = 10000*torch.sum(((torch.sum(shipments, axis=0)-torch.FloatTensor(STORES))/1.)**2)
     # per factory
-    l_fac =100*torch.sum(((torch.sum(shipments, axis=1)-torch.FloatTensor(FACTORY))/1.)**2)
+    l_fac =10000*torch.sum(((torch.sum(shipments, axis=1)-torch.FloatTensor(FACTORY))/1.)**2)
     # square of hours needed
     l_hours = (torch.sum(out)**2)/10000.
     loss = l_fac + l_hours + l_store

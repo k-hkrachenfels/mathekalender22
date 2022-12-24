@@ -37,21 +37,21 @@ def is_valid(state):
         last=element
     return True
 
-# # handy if we want to fill caches before playing -> maybe not needed because we do not need all states
-# def enumerate_states(columns, rows):
-#     #a = [0]*rows
-#     if columns>0:
-#         for state in enumerate_states(columns-1,rows):
-#             for i in range(rows,-1,-1):
-#                 #new_state=[i]
-#                 #new_state.extend(state)
-#                 new_state=state.copy()
-#                 new_state=HashList(*state)
-#                 new_state.append(i)
-#                 if is_valid(new_state):
-#                     yield(new_state)
-#     else:
-#         yield(HashList())
+# handy if we want to fill caches before playing -> maybe not needed because we do not need all states
+def enumerate_states(columns, rows):
+    #a = [0]*rows
+    if columns>0:
+        for state in enumerate_states(columns-1,rows):
+            for i in range(rows,-1,-1):
+                #new_state=[i]
+                #new_state.extend(state)
+                new_state=state.copy()
+                new_state=HashList(*state)
+                new_state.append(i)
+                if is_valid(new_state):
+                    yield(new_state)
+    else:
+        yield(HashList())
         
 def enumerate_moves(a, max_row):
     """ Notes: 
@@ -73,7 +73,7 @@ def enumerate_moves(a, max_row):
             yield(a_return)            
 
 def move( state, x, y):
-    for col in range(x):
+    for col in range(x+1):
         if state[col]<y:
             state[col]=y
     return state
@@ -120,25 +120,26 @@ def is_win(start_state, ROWS, depth=0, print_move=False):
     
     return False, None
 
-# def init_caches(COLS,ROWS):
-#     true_count=0
-#     false_count=0
-#     for i,state in enumerate(enumerate_states(COLS,ROWS)):
-#         w=is_win(state,ROWS)[0]
-#         if w:
-#             true_count+=1
-#         else:
-#             false_count+=1
-#         print(state, w, true_count, false_count)
-#         if i%100==0:
-#             print(".",end="")
+def init_caches(COLS,ROWS):
+    true_count=0
+    false_count=0
+    for i,state in enumerate(enumerate_states(COLS,ROWS)):
+        w=is_win(state,ROWS)[0]
+        if w:
+            true_count+=1
+        else:
+            false_count+=1
+        print(state, w, true_count, false_count)
+        if i%100==0:
+            print(".",end="")
 
 if __name__ == "__main__":  
     # initialize new Board with COL columns
-    ROWS=8
-    COLS=8
-    #a = [0]*COLS
-    a=[8, 8, 1, 1, 1, 1, 1, 1]
+    ROWS=10
+    COLS=10
+    #init_caches(COLS=COLS,ROWS=ROWS)
+    #a = [2]*COLS
+    a=[10, 1, 1, 1, 1, 1, 1, 1, 1, 0]
     print(a)
     a = HashList(*a)
     while True:
@@ -148,6 +149,7 @@ if __name__ == "__main__":
             exit(0)
         i = int(input("column number start with 0 on the left:"))
         v = int(input("number of pieces to open in the column:"))
-        a[i]=v
+        #a[i]=v
+        a=move(a,i,v)
         print(a)
         print("computing next move")

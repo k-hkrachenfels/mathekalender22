@@ -185,3 +185,24 @@ und erhält 8150 Stunden.
 
 -> Nr. 8
 Allerdings ohne Beweis, dass es nichts besseres gibt.
+
+# Aufgabe 20
+Das Eisphone [Aufgabe](20/MK-2022-Beier-EisPhone-de.pdf)
+
+# Aufgabe 23
+Robin Hoods neue Pfeile: [Aufgabe](23/MK-2022-Sevenster-Quiver-de.pdf)
+
+[Skizze](23/23.pdf)
+
+# Aufgabe 24
+Beier Dreieck: [Aufgabe](24/MK-2022-Beier-Dreieck-de.pdf)
+
+[Skizze](24/24.pdf)
+
+Lösung: Nr. 10
+
+[Skizze](24/24.pdf) und Herleitung.
+
+Achtung: Ein Programm, das mit Gleitkomma rechnet liefert 0.9999.. als Lösung: [Programm](24/24.py)
+
+Erst durch symbolische Berechnung erhält man die korrekte Lösung. Hier mit sympy: [Programm](24/24_sympy.py)
