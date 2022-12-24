@@ -186,6 +186,39 @@ und erhält 8150 Stunden.
 -> Nr. 8
 Allerdings ohne Beweis, dass es nichts besseres gibt.
 
+Bemerkung: Simplex liefert dieselbe Lösung.
+Hier das Programm von Stefan für glpk:
+```
+set F;                      /* factories Fi                     */
+set W;                      /* warehouses Wj                    */
+param p{i in F};            /* loads of presents produced in Fi */
+param m{j in W};            /* loads of presents missing in Wj  */
+param d{i in F, j in W};    /* duration flight Fi to Wj         */
+var x{i in F, j in W} >= 0, integer;
+minimize duration: sum{i in F, j in W} d[i,j] * x[i,j];
+s.t. produced{i in F}: sum{j in W} x[i,j] <= p[i];
+s.t. missing{j in W}: sum{i in F} x[i,j] >= m[j];
+
+data;
+
+set F := F1 F2 F3;
+set W := W1 W2 W3 W4 W5 W6;
+param p := F1 500     
+           F2 400     
+           F3 900     ;
+param m := W1 100     
+           W2 450     
+           W3 300     
+           W4 400     
+           W5 200     
+           W6 350     ;
+param d :     W1 W2 W3    W4    W5 W6 :=
+           F1 2  4  10000 10000 5  8
+           F2 7  8  8     11    3  5
+           F3 8  6  5     4     9  9 ;
+end;
+
+```
 # Aufgabe 20
 Das Eisphone [Aufgabe](20/MK-2022-Beier-EisPhone-de.pdf)
 
