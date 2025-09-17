@@ -239,3 +239,7 @@ Lösung: Nr. 10
 Achtung: Ein Programm, das mit Gleitkomma rechnet liefert 0.9999.. als Lösung: [Programm](24/24.py)
 
 Erst durch symbolische Berechnung erhält man die korrekte Lösung. Hier mit sympy: [Programm](24/24_sympy.py)
+
+## Lösungen
+
+[Link auf pdf mit Lösungen](MK-2022-Loesungen-de.pdf)
