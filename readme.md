@@ -112,6 +112,8 @@ Strategie für quadratische Felder ist klar, für 2xn Felder auch
 Allgemeine Strategie noch nicht beschreibbar - Simulation findet win Situation für Felder kleiner als 6x4 rechnerisch gerade noch möglich, danach dauert es zu lange
 (evtl. noch Programm auf dynamische Programmierung umstellen)
 
+Interessant ist hier die [Musterlösung](MK-2022-Loesungen-de.pdf) mit einem Widerspruchsbeweis, der beweist wann es eine Strategie gibt ohne sie allerdings zu beschreiben. Nach dem Wissenstand der Autoren hat noch niemand den Algorithmus für die Strategie angeben können.
+
 
 # Aufgabe 14
 Rentiere im Gehege: [Aufgabe](14/MK-2022-KH-ReindeerBreeding-de-1.pdf)
